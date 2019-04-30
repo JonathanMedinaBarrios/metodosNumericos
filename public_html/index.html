@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="recursos/codebase/dhtmlx.css"/>
+        <script src="recursos/codebase/dhtmlx.js"></script>
+    </head>
+    <body>
+        <style>
+            html, body {
+                width: 100%;      /*provides the correct work of a full-screen layout*/ 
+                height: 100%;     /*provides the correct work of a full-screen layout*/
+                overflow: hidden; /*hides the default body's space*/
+                margin: 0px;      /*hides the body's scrolls*/
+            }
+        </style>   
+        <script>
+            
+            dhtmlxEvent(window, "load", function () {
+                
+                var main_layout = new dhtmlXLayoutObject(document.body, '3W');
+
+                var a = main_layout.cells('a');
+                var layout2 = a.attachLayout('2E');
+                
+                var campo1 = layout2.cells('a');
+                var campo2 = layout2.cells('b');
+                var campo3 = main_layout.cells('b');
+                var campo4 = main_layout.cells('c');
+                
+                campo1.setText('Nombre del campo 1');
+                campo2.setText('Nombre del campo 2');
+                campo3.setText('Nombre del campo 3');
+                campo4.setText('Nombre del campo 4');
+            });
+        </script>
+    </body>
+</html>
