@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="recursos/codebase/dhtmlx.css"/>
         <script src="recursos/codebase/dhtmlx.js"></script>
+        <script src="recursos/metodos.js"></script>
     </head>
     <body>
         <style>
@@ -17,23 +18,57 @@
             }
         </style>   
         <script>
-            
+
+            var campo1 = null;
+            var campo2 = null;
+            var campo3 = null;
+            var campo4 = null;
+
+
             dhtmlxEvent(window, "load", function () {
-                
+
                 var main_layout = new dhtmlXLayoutObject(document.body, '3W');
 
                 var a = main_layout.cells('a');
                 var layout2 = a.attachLayout('2E');
+
+                campo1 = layout2.cells('a');
+
+                var str = [
+                    {type: "settings", labelWidth: 80, inputWidth: 250, position: "absolute"},
+                    {type: "input", name: "a", label: "A", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 25, labelTop: 5, inputLeft: 25, inputTop: 21},
+                    {type: "input", name: "b", label: "B", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 125, labelTop: 5, inputLeft: 125, inputTop: 21},
+                    {type: "input", name: "funcion", label: "F(x)", labelWidth: 275, labelAlign: "left", inputWidth: 275, labelLeft: 25, labelTop: 50, inputLeft: 25, inputTop: 71},
+                    {type: "input", name: "intervalos", label: "Intervalos", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 225, labelTop: 5, inputLeft: 225, inputTop: 21},
+                    {type: "button", name: "btnSolucionar", label: "Solucionar", value: "Solucionar", width: "100", inputWidth: 100, inputLeft: 200, inputTop: 100}
+                ];
+
+                form = campo1.attachForm(str);
                 
-                var campo1 = layout2.cells('a');
-                var campo2 = layout2.cells('b');
-                var campo3 = main_layout.cells('b');
-                var campo4 = main_layout.cells('c');
-                
+                form.attachEvent("onButtonClick", function (name) {
+                    switch (name) {
+                        case "btnSolucionar":
+                            //var obj = formMantenimiento.getFormData();
+                            //console.log(JSON.stringify(obj));
+                            trapezoidal(); 
+                            break;
+                    }
+                });
+                campo2 = layout2.cells('b');
+
+                campo3 = main_layout.cells('b');
+
+                campo4 = main_layout.cells('c');
+
                 campo1.setText('Nombre del campo 1');
-                campo2.setText('Nombre del campo 2');
+                campo2.hideHeader();
                 campo3.setText('Nombre del campo 3');
                 campo4.setText('Nombre del campo 4');
+
+                $(document).ready(function () {
+                    //disable all autocomplete info from browsers.
+                    $(":input").attr("autocomplete", "off");
+                });
             });
         </script>
     </body>
