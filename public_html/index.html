@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="recursos/codebase/dhtmlx.css"/>
         <script src="recursos/codebase/dhtmlx.js"></script>
-        <script src="recursos/metodos.js"></script>
+        <script src="recursos/metodos.js"></script>  
     </head>
     <body>
         <style>
@@ -44,13 +44,13 @@
                 ];
 
                 form = campo1.attachForm(str);
-                
+
                 form.attachEvent("onButtonClick", function (name) {
                     switch (name) {
                         case "btnSolucionar":
                             //var obj = formMantenimiento.getFormData();
                             //console.log(JSON.stringify(obj));
-                            trapezoidal(); 
+                            trapezoidal();
                             break;
                     }
                 });
@@ -62,13 +62,15 @@
 
                 campo1.setText('Nombre del campo 1');
                 campo2.hideHeader();
-                campo3.setText('Nombre del campo 3');
+                campo3.hideHeader();
+
                 campo4.setText('Nombre del campo 4');
 
                 $(document).ready(function () {
                     //disable all autocomplete info from browsers.
                     $(":input").attr("autocomplete", "off");
                 });
+
             });
         </script>
     </body>
