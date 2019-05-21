@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="recursos/codebase/dhtmlx.css"/>
         <link rel="stylesheet" type="text/css" href="recursos/css/metodos.css"/>
+        <link rel="stylesheet" type="text/css" href="recursos/codebase/fonts/font_roboto/roboto.css"/>
+        <link rel="stylesheet" type="text/css" href="recursos/codebase/fonts/font_awesome/css/font-awesome.min.css"/>
         <script src="recursos/codebase/dhtmlx.js"></script>
         <script src="recursos/metodos.js"></script>  
         <script src="recursos/libjs/jquery-3.3.1.js"></script>  
@@ -27,10 +29,10 @@
             var campo4 = null;
             var dataview = null;
             var myLineChart = null;
-            
-            
+
+
             dhtmlxEvent(window, "load", function () {
-                
+
 
                 var main_layout = new dhtmlXLayoutObject(document.body, '3W');
 
@@ -47,6 +49,17 @@
                     {type: "input", name: "intervalos", label: "Intervalos", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 225, labelTop: 5, inputLeft: 225, inputTop: 21},
                     {type: "button", name: "btnSolucionar", label: "Solucionar", value: "Solucionar", width: "100", inputWidth: 100, inputLeft: 200, inputTop: 100}
                 ];
+                
+                campo1.hideHeader();
+                var toolbar_metodos = layout2.cells('a').attachToolbar();
+                toolbar_metodos.setIconSize(18);
+                toolbar_metodos.setIconset("awesome");
+                toolbar_metodos.loadStruct('<toolbar><item type="text" id="txtMetodo" text="SELECCIONAR METODO AL RESOLVER"/><item type="separator" id="button_separator_1" />\n\
+                                                     <item type="buttonSelect" id="list_filtro" text="Filtro" mode="select" selected="trapezoidal">\n\
+                                                     <item type="button" id="trapezoidal" text="TRAPEZOIDAL" />\n\
+                                                     <item type="button" id="jorgeBoole" text="JORGE BOOLE" />\n\
+                                                     <item type="button" id="simpson3_8" text="T. SIMPSON 3/8" /></toolbar>', function () {});
+                toolbar_metodos.addSpacer("txtMetodo");
 
                 form = campo1.attachForm(str);
 

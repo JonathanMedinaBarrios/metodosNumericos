@@ -32,12 +32,12 @@ function trapezoidal() {
         view: "spline",
         value:"#sales#",
         item: {
-            borderColor: "#ffffff",
+            borderColor: "#fbfbfb;",
             color: "#000000"
         },
         line: {
             color: "#ff9900",
-            width: 3
+            width: 2
         },
         xAxis: {
             template: "'#x#"
@@ -48,11 +48,10 @@ function trapezoidal() {
             end: valorFin,
             step:10,
             template: function (value) {
-                return value % 20 ? "" : value
+                return value % 1 ? "" : value
             }
         }
     });
-
 
     for (var i = 0; i < fin + 1; i++) {
         //suma +=  parseInt(values[i]);
@@ -79,7 +78,7 @@ function trapezoidal() {
         type: {
             //template: loadTemplate('recursos/tamplate/trapezoidal.html'),
             template: "Límite inferior: a=#limitea#<br/><br/>\n\
-                      Límite inferior: b=#limiteb#<br/><br/>\n\
+                      Límite superior: b=#limiteb#<br/><br/>\n\
                       Número de subintervalos: n=#intervalos#<br/><br/>\n\
                       La longitud de un subintervalo: h=#h#<br/><br/>\n\
                       <spam>Resultado final: </spam>#resultado#",
