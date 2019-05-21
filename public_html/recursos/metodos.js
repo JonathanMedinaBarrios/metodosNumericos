@@ -16,7 +16,7 @@ function trapezoidal() {
     var fin = parseInt(obj.intervalos, 10);
     var xs = inicio;
 
-    for (var i = inicio; i < fin + 2; i++) {
+    for (var i = 0; i < fin + 1; i++) {
         var x = Math.round(xs * 100) / 100;
         var data = [i, x, eval(obj.funcion)];
         tablaTrapezoidalGrid.addRow(i, data);
@@ -27,26 +27,78 @@ function trapezoidal() {
     var valorInicio;
     var valorFin;
     var values = [];
-    for (var i = inicio; i < fin + 2; i++) {
+
+    myLineChart = campo4.attachChart({
+        view: "spline",
+        value:"#sales#",
+        item: {
+            borderColor: "#ffffff",
+            color: "#000000"
+        },
+        line: {
+            color: "#ff9900",
+            width: 3
+        },
+        xAxis: {
+            template: "'#x#"
+        },
+        offset: 0,
+        yAxis: {
+            start: 0,
+            end: valorFin,
+            step:10,
+            template: function (value) {
+                return value % 20 ? "" : value
+            }
+        }
+    });
+
+
+    for (var i = 0; i < fin + 1; i++) {
         //suma +=  parseInt(values[i]);
         tablaTrapezoidalGrid.forEachCell(i, function (cellObj, ind) {
             var cn = tablaTrapezoidalGrid.getColumnId(ind);// Nombre de la columna
             values[cn] = cellObj.getValue();
         });
-        if (values.i > inicio && values.i < fin + 1) {
+        myLineChart.add({
+            x: values.x,
+            sales:values.y
+        });
+        //console.log(values);
+        if (values.x > inicio && values.i < fin) {
             suma += parseFloat(values.y);
-        } else if (values.i == inicio) {
+        } else if (values.x == inicio) {
             valorInicio = parseFloat(values.y);
         } else {
             valorFin = parseFloat(values.y);
         }
 
     }
+
+    dataview = campo3.attachDataView({
+        type: {
+            //template: loadTemplate('recursos/tamplate/trapezoidal.html'),
+            template: "Límite inferior: a=#limitea#<br/><br/>\n\
+                      Límite inferior: b=#limiteb#<br/><br/>\n\
+                      Número de subintervalos: n=#intervalos#<br/><br/>\n\
+                      La longitud de un subintervalo: h=#h#<br/><br/>\n\
+                      <spam>Resultado final: </spam>#resultado#",
+            width: 500
+        }
+    });
+    var resultado = h * ((valorInicio / 2) + suma + (valorFin / 2));
+
+    dataview.add({
+        limitea: inicio,
+        limiteb: obj.b,
+        intervalos: fin,
+        h: h,
+        resultado: resultado
+    });
+
     console.log(valorInicio);
     console.log(valorFin);
     console.log(suma);
-    var resultado = h * ((valorInicio / 2) + suma + (valorFin / 2));
-
+    //console.log(resultado);*/
 }
-
 

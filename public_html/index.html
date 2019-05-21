@@ -5,8 +5,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="recursos/codebase/dhtmlx.css"/>
+        <link rel="stylesheet" type="text/css" href="recursos/css/metodos.css"/>
         <script src="recursos/codebase/dhtmlx.js"></script>
         <script src="recursos/metodos.js"></script>  
+        <script src="recursos/libjs/jquery-3.3.1.js"></script>  
     </head>
     <body>
         <style>
@@ -23,9 +25,12 @@
             var campo2 = null;
             var campo3 = null;
             var campo4 = null;
-
-
+            var dataview = null;
+            var myLineChart = null;
+            
+            
             dhtmlxEvent(window, "load", function () {
+                
 
                 var main_layout = new dhtmlXLayoutObject(document.body, '3W');
 
@@ -62,9 +67,8 @@
 
                 campo1.setText('Nombre del campo 1');
                 campo2.hideHeader();
-                campo3.hideHeader();
-
-                campo4.setText('Nombre del campo 4');
+                campo3.setText('SOLUCIÓN');
+                campo4.setText('GRAFICO');
 
                 $(document).ready(function () {
                     //disable all autocomplete info from browsers.

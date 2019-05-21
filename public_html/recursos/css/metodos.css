@@ -4,10 +4,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 20-may-2019, 19:30:05
-    Author     : JONATHAN MEDINA
+    Created on : 21/05/2019, 08:35:01 AM
+    Author     : JONATHAN MEDINA BARRIOS
 */
-
 .dhx_dataview .dhx_dataview_default_item, .dhx_dataview .dhx_dataview_default_item_selected{
     border-right:0;
 }
@@ -15,28 +14,17 @@ and open the template in the editor.
     background-color: #fbfbfb;
     border-left:3px #ff7f00 solid;
 }
-
-.card,.card-edit{
-    position: relative;
-}
 .property{
     font-family:tahoma;
     padding-bottom: 5px;
     padding-right: 15px;
     flex-shrink: 0;
 }
-.card .property > label {
-    font-size: 10px;
-    color: #848484;
-    display: block;
+div[dhx_f_id="-1"] .card:not(:hover) > .info-card {
+    display: flex;
+    align-items: center;
 }
 .card .property > spam {
     font-size: 12px;
     display: block;
 }
-
-.card .property spam i {
-    font-size: 18px;
-    color:#585858;
-}
-
