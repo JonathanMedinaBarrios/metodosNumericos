@@ -29,7 +29,7 @@
             var campo4 = null;
             var dataview = null;
             var myLineChart = null;
-
+            var selectMetodo = "trapezoidal";
 
             dhtmlxEvent(window, "load", function () {
 
@@ -49,7 +49,7 @@
                     {type: "input", name: "intervalos", label: "Intervalos", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 225, labelTop: 5, inputLeft: 225, inputTop: 21},
                     {type: "button", name: "btnSolucionar", label: "Solucionar", value: "Solucionar", width: "100", inputWidth: 100, inputLeft: 200, inputTop: 100}
                 ];
-                
+
                 campo1.hideHeader();
                 campo1.setWidth(410);
                 campo1.setHeight(180);
@@ -63,22 +63,35 @@
                                                      <item type="button" id="simpson3_8" text="T. SIMPSON 3/8" /></toolbar>', function () {});
                 toolbar_metodos.addSpacer("txtMetodo");
 
+                toolbar_metodos.attachEvent("onClick", function (id) {
+                    selectMetodo = id;
+                });
+
                 form = campo1.attachForm(str);
 
                 form.attachEvent("onButtonClick", function (name) {
                     switch (name) {
                         case "btnSolucionar":
-                            //var obj = formMantenimiento.getFormData();
-                            //console.log(JSON.stringify(obj));
-                            trapezoidal();
+                            switch (selectMetodo) {
+                                case "trapezoidal":
+                                    trapezoidal();
+                                    break;
+                                case "jorgeBoole":
+                                    console.log("jorgeBoole");
+                                    break;
+                                case "simpson3_8":
+                                    simpson_3_8(); 
+                                    break;
+                            }
+                            //simpson_3_8();
                             break;
                     }
                 });
-                campo2 = layout2.cells('b');                
-                
+                campo2 = layout2.cells('b');
+
                 var b = main_layout.cells('b');
                 var layout3 = b.attachLayout('2E');
-                
+
                 campo3 = layout3.cells('a');
 
                 campo4 = layout3.cells('b');
@@ -88,10 +101,10 @@
                 campo3.setText('SOLUCIÓN');
                 campo3.setHeight(180);
                 campo4.setText('GRAFICO');
-                
+
                 var log = main_layout.attachStatusBar();
                 log.setText('TRABAJO METODOS NUMERICOS');
-                
+
                 $(document).ready(function () {
                     //disable all autocomplete info from browsers.
                     $(":input").attr("autocomplete", "off");
