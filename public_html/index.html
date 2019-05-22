@@ -34,7 +34,7 @@
             dhtmlxEvent(window, "load", function () {
 
 
-                var main_layout = new dhtmlXLayoutObject(document.body, '3W');
+                var main_layout = new dhtmlXLayoutObject(document.body, '2U');
 
                 var a = main_layout.cells('a');
                 var layout2 = a.attachLayout('2E');
@@ -51,6 +51,8 @@
                 ];
                 
                 campo1.hideHeader();
+                campo1.setWidth(410);
+                campo1.setHeight(180);
                 var toolbar_metodos = layout2.cells('a').attachToolbar();
                 toolbar_metodos.setIconSize(18);
                 toolbar_metodos.setIconset("awesome");
@@ -72,17 +74,24 @@
                             break;
                     }
                 });
-                campo2 = layout2.cells('b');
+                campo2 = layout2.cells('b');                
+                
+                var b = main_layout.cells('b');
+                var layout3 = b.attachLayout('2E');
+                
+                campo3 = layout3.cells('a');
 
-                campo3 = main_layout.cells('b');
-
-                campo4 = main_layout.cells('c');
+                campo4 = layout3.cells('b');
 
                 campo1.setText('Nombre del campo 1');
                 campo2.hideHeader();
                 campo3.setText('SOLUCIÓN');
+                campo3.setHeight(180);
                 campo4.setText('GRAFICO');
-
+                
+                var log = main_layout.attachStatusBar();
+                log.setText('TRABAJO METODOS NUMERICOS');
+                
                 $(document).ready(function () {
                     //disable all autocomplete info from browsers.
                     $(":input").attr("autocomplete", "off");

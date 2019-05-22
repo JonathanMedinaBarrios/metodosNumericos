@@ -30,7 +30,7 @@ function trapezoidal() {
 
     myLineChart = campo4.attachChart({
         view: "spline",
-        value:"#sales#",
+        value:"#y#",
         item: {
             borderColor: "#fbfbfb;",
             color: "#000000"
@@ -61,7 +61,7 @@ function trapezoidal() {
         });
         myLineChart.add({
             x: values.x,
-            sales:values.y
+            y:values.y
         });
         //console.log(values);
         if (values.x > inicio && values.i < fin) {
@@ -82,7 +82,8 @@ function trapezoidal() {
                       Número de subintervalos: n=#intervalos#<br/><br/>\n\
                       La longitud de un subintervalo: h=#h#<br/><br/>\n\
                       <spam>Resultado final: </spam>#resultado#",
-            width: 500
+            width: 500,
+            height: 180
         }
     });
     var resultado = h * ((valorInicio / 2) + suma + (valorFin / 2));
