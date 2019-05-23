@@ -102,6 +102,172 @@ function trapezoidal() {
     //console.log(resultado);*/
 }
 
+function simpson_1_3() {
+
+    var obj = form.getFormData();
+
+    var h = (obj.b - obj.a) / 2;
+
+    var tablaSimpson1_3 = campo2.attachGrid();
+
+    tablaSimpson1_3.setHeader("Intervalo,X," + obj.funcion);
+    tablaSimpson1_3.setColumnIds("i,x,y");
+    tablaSimpson1_3.setColTypes("ro,ro,ro");
+    tablaSimpson1_3.init();
+
+    var inicio = parseInt(obj.a, 10);
+    var fin = parseInt(obj.b, 10);
+    var xs = inicio;
+    var nuevaFuncion = null;
+
+    for (var i = 0; i < fin + 1; i++) {
+        var x = Math.round(xs * 100) / 100;
+        if (i !== 0 && x !== fin) {
+            nuevaFuncion = "4*" + "" + (obj.funcion);
+        } else {
+            nuevaFuncion = obj.funcion;
+        }
+        
+        //Math.sqrt(x+10)
+        
+        var data = [i, x, eval(nuevaFuncion)];
+        tablaSimpson1_3.addRow(i, data);
+        xs += h;
+        if (x === fin) {
+            i = fin;
+        }
+    }
+    
+    var suma = 0;
+    var values = [];
+    
+    for (var i = 0; i < fin + 1; i++) {
+        //suma +=  parseInt(values[i]);
+        tablaSimpson1_3.forEachCell(i, function (cellObj, ind) {
+            var cn = tablaSimpson1_3.getColumnId(ind);// Nombre de la columna
+            values[cn] = cellObj.getValue();
+        });
+        console.log(values);
+        suma += parseFloat(values.y);
+        if (parseInt(values.x) === fin) {
+            i = fin;
+        }
+    }
+
+    dataview = campo3.attachDataView({
+        type: {
+            //template: loadTemplate('recursos/tamplate/trapezoidal.html'),
+            template: "Límite inferior: a=#limitea#<br/><br/>\n\
+                      Límite superior: b=#limiteb#<br/><br/>\n\
+                      La longitud de un subintervalo: h=#h#<br/><br/>\n\
+                      Sumatoria: n=#suma#<br/><br/>\n\
+                      <spam>Resultado final: </spam>#resultado#",
+            width: 500,
+            height: 180
+        }
+    });
+    
+    var resultado = ((suma*h)/3);
+    
+     dataview.add({
+        limitea: inicio,
+        limiteb: obj.b,
+        h: h,
+        suma:suma,
+        resultado: resultado
+    });
+
+    //console.log(h); 
+
+}
+
+function simpsonAbierto() {
+
+    var obj = form.getFormData();
+    
+    if(obj.intervalos%2==0){ // Si el intervalo es par, sino mnda mensaje
+        var h = (obj.b - obj.a) / obj.intervalos;
+
+        var tablaSimpsonAbierto = campo2.attachGrid();
+
+        tablaSimpsonAbierto.setHeader("Intervalo,X," + obj.funcion);
+        tablaSimpsonAbierto.setColumnIds("i,x,y");
+        tablaSimpsonAbierto.setColTypes("ro,ro,ro");
+        tablaSimpsonAbierto.init();
+
+        var inicio = parseInt(obj.a, 10);
+        var fin = parseInt(obj.b, 10);
+        var xs = inicio;
+        var nuevaFuncion = null;
+
+        for (var i = 0; i < fin + 1; i++) {
+            var x = Math.round(xs * 100) / 100;
+            if (i !== 0 && x !== fin) {
+                if (i%2 == 0) {
+                    nuevaFuncion = "2*" + "" + (obj.funcion);
+                }else{
+                    nuevaFuncion = "4*" + "" + (obj.funcion);
+                }
+            } else {
+                nuevaFuncion = obj.funcion;
+            }
+
+            var data = [i, x, eval(nuevaFuncion)];
+            tablaSimpsonAbierto.addRow(i, data);
+            xs += h;
+            if (x === fin) {
+                i = fin;
+            }
+        }
+
+        var suma = 0;
+        var values = [];
+
+        for (var i = 0; i < fin + 1; i++) {
+            //suma +=  parseInt(values[i]);
+            tablaSimpsonAbierto.forEachCell(i, function (cellObj, ind) {
+                var cn = tablaSimpsonAbierto.getColumnId(ind);// Nombre de la columna
+                values[cn] = cellObj.getValue();
+            });
+            console.log(values);
+            suma += parseFloat(values.y);
+            if (parseInt(values.x) === fin) {
+                i = fin;
+            }
+        }
+
+        dataview = campo3.attachDataView({
+            type: {
+                //template: loadTemplate('recursos/tamplate/trapezoidal.html'),
+                template: "Límite inferior: a=#limitea#<br/><br/>\n\
+                          Límite superior: b=#limiteb#<br/><br/>\n\
+                          La longitud de un subintervalo: h=#h#<br/><br/>\n\
+                          Sumatoria: n=#suma#<br/><br/>\n\
+                          <spam>Resultado final: </spam>#resultado#",
+                width: 500,
+                height: 180
+            }
+        });
+
+        var resultado = ((suma*h)/3);
+
+         dataview.add({
+            limitea: inicio,
+            limiteb: obj.b,
+            h: h,
+            suma:suma,
+            resultado: resultado
+        });
+
+        //console.log(h); 
+    }else{
+        alert("El intervalo debe ser un numero par");
+    }
+    
+    
+
+}
+
 function simpson_3_8() {
 
     var obj = form.getFormData();
@@ -166,6 +332,91 @@ function simpson_3_8() {
     });
     
     var resultado = ((3*h)/8)*(suma);
+    
+     dataview.add({
+        limitea: inicio,
+        limiteb: obj.b,
+        h: h,
+        suma:suma,
+        resultado: resultado
+    });
+
+    //console.log(h); 
+
+}
+
+function jorgeB() {
+
+    var obj = form.getFormData();
+
+    var h = (obj.b - obj.a) / 4;
+
+    var tablaJorgeB = campo2.attachGrid();
+
+    tablaJorgeB.setHeader("Intervalo,X," + obj.funcion);
+    tablaJorgeB.setColumnIds("i,x,y");
+    tablaJorgeB.setColTypes("ro,ro,ro");
+    tablaJorgeB.init();
+
+    var inicio = parseInt(obj.a, 10);
+    var fin = parseInt(obj.b, 10);
+    var xs = inicio;
+    var nuevaFuncion = null;
+
+    for (var i = 0; i < fin + 1; i++) {
+        var x = Math.round(xs * 100) / 100;
+        if (i == 0 || x == fin) {
+            nuevaFuncion = "7*" + "" + (obj.funcion);
+        } else {
+            if (i == 1 || i == 3) {
+                nuevaFuncion = "32*" + "" + (obj.funcion);
+            }else {
+                nuevaFuncion = "12*" + "" + (obj.funcion);
+            }
+        }
+        
+        //Math.sqrt(3*x+1)
+        
+        var data = [i, x, eval(nuevaFuncion)];
+        tablaJorgeB.addRow(i, data);
+        xs += h;
+        if (x == fin) {
+            i = fin;
+        }
+    }
+    
+    var suma = 0;
+    var values = [];
+    
+    for (var i = 0; i < fin + 1; i++) {
+        //suma +=  parseInt(values[i]);
+        tablaJorgeB.forEachCell(i, function (cellObj, ind) {
+            var cn = tablaJorgeB.getColumnId(ind);// Nombre de la columna
+            values[cn] = cellObj.getValue();
+        });
+        console.log(values);
+        suma += parseFloat(values.y);
+        if (parseInt(values.x) === fin) {
+            i = fin;
+        }
+    }
+    
+    //Math.sqrt(3X+1)
+    
+    dataview = campo3.attachDataView({
+        type: {
+            //template: loadTemplate('recursos/tamplate/trapezoidal.html'),
+            template: "Límite inferior: a=#limitea#<br/><br/>\n\
+                      Límite superior: b=#limiteb#<br/><br/>\n\
+                      La longitud de un subintervalo: h=#h#<br/><br/>\n\
+                      Sumatoria: n=#suma#<br/><br/>\n\
+                      <spam>Resultado final: </spam>#resultado#",
+            width: 500,
+            height: 180
+        }
+    });
+    
+    var resultado = ((2*h*suma)/45);
     
      dataview.add({
         limitea: inicio,

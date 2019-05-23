@@ -60,7 +60,9 @@
                                                      <item type="buttonSelect" id="list_filtro" text="Filtro" mode="select" selected="trapezoidal">\n\
                                                      <item type="button" id="trapezoidal" text="TRAPEZOIDAL" />\n\
                                                      <item type="button" id="jorgeBoole" text="JORGE BOOLE" />\n\
-                                                     <item type="button" id="simpson3_8" text="T. SIMPSON 3/8" /></toolbar>', function () {});
+                                                     <item type="button" id="simpson1_3" text="T. SIMPSON 1/3" />\n\
+                                                     <item type="button" id="simpson3_8" text="T. SIMPSON 3/8" />\n\
+                                                     <item type="button" id="simpsonAbierto" text="SIMPSON ABIERTO" /></toolbar>', function () {});
                 toolbar_metodos.addSpacer("txtMetodo");
 
                 toolbar_metodos.attachEvent("onClick", function (id) {
@@ -77,10 +79,16 @@
                                     trapezoidal();
                                     break;
                                 case "jorgeBoole":
-                                    console.log("jorgeBoole");
+                                    jorgeB();
                                     break;
                                 case "simpson3_8":
                                     simpson_3_8(); 
+                                    break;
+                                case "simpson1_3":
+                                    simpson_1_3(); 
+                                    break;
+                                case "simpsonAbierto":
+                                    simpsonAbierto();  
                                     break;
                             }
                             //simpson_3_8();
