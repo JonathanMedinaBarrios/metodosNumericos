@@ -4,7 +4,7 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="recursos/codebase/dhtmlx.css"/>
+        <link rel="stylesheet" type="text/css" href="recursos/skins/web/dhtmlx.css"/>
         <link rel="stylesheet" type="text/css" href="recursos/css/metodos.css"/>
         <link rel="stylesheet" type="text/css" href="recursos/codebase/fonts/font_roboto/roboto.css"/>
         <link rel="stylesheet" type="text/css" href="recursos/codebase/fonts/font_awesome/css/font-awesome.min.css"/>
@@ -43,16 +43,38 @@
 
                 var str = [
                     {type: "settings", labelWidth: 80, inputWidth: 250, position: "absolute"},
-                    {type: "input", name: "a", label: "A", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 25, labelTop: 5, inputLeft: 25, inputTop: 21},
-                    {type: "input", name: "b", label: "B", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 125, labelTop: 5, inputLeft: 125, inputTop: 21},
-                    {type: "input", name: "funcion", label: "F(x)", labelWidth: 275, labelAlign: "left", inputWidth: 275, labelLeft: 25, labelTop: 50, inputLeft: 25, inputTop: 71},
+                    {type: "input", name: "a", label: "A", required: true, labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 25, labelTop: 5, inputLeft: 25, inputTop: 21},
+                    {type: "input", name: "b", label: "B",  required: true, labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 125, labelTop: 5, inputLeft: 125, inputTop: 21},
+                    {type: "input", name: "funcion", label: "F(x)",  required: true,labelWidth: 275, labelAlign: "left", inputWidth: 275, labelLeft: 25, labelTop: 50, inputLeft: 25, inputTop: 71},
                     {type: "input", name: "intervalos", label: "Intervalos", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 225, labelTop: 5, inputLeft: 225, inputTop: 21},
-                    {type: "button", name: "btnSolucionar", label: "Solucionar", value: "Solucionar", width: "100", inputWidth: 100, inputLeft: 200, inputTop: 100}
+                    {type: "template", required: true, name: "operadoresEspeciales", inputWidth: 250, labelLeft: 25, inputLeft: 25, inputTop: 100,
+                        value: {title: "Operaciones Especiales"}, format: renderOperadoresEpeciales},
+                    {type: "button", name: "btnSolucionar", label: "Solucionar", value: "Solucionar", width: "100", inputWidth: 100, inputLeft: 200, inputTop: 115}
                 ];
 
+                function renderOperadoresEpeciales(name, data) {
+                    return "<div>\n\
+                              <br>\n\
+                                <input type='button' value='%'>\n\
+                                <input type='button' value='('>\n\
+                                <input type='button' value=')'>\n\
+                                <input type='button' value='ln'>\n\
+                              <br>\n\
+                                <input type='button' value='Log'>\n\
+                                <input type='button' value='Sin'>\n\
+                                <input type='button' value='Cos'>\n\
+                                <input type='button' value='Tan'>\n\
+                                <br>\n\
+                                <input type='button' value='²√'>\n\
+                                <input type='button' value='X²'>\n\
+                                <input type='button' value='1/X'>\n\
+                              <br>\n\
+                            </div>";
+                }
+
                 campo1.hideHeader();
-                campo1.setWidth(410);
-                campo1.setHeight(180);
+                campo1.setWidth(450);
+                campo1.setHeight(300);
                 var toolbar_metodos = layout2.cells('a').attachToolbar();
                 toolbar_metodos.setIconSize(18);
                 toolbar_metodos.setIconset("awesome");
@@ -62,7 +84,7 @@
                                                      <item type="button" id="jorgeBoole" text="JORGE BOOLE" />\n\
                                                      <item type="button" id="simpson1_3" text="T. SIMPSON 1/3" />\n\
                                                      <item type="button" id="simpson3_8" text="T. SIMPSON 3/8" />\n\
-                                                     <item type="button" id="simpsonAbierto" text="SIMPSON ABIERTO" /></toolbar>', function () {});
+                                                     <item type="button" id="simpsonAbierto" text="SIMPSON ABIERTO" /></item></toolbar>', function () {});
                 toolbar_metodos.addSpacer("txtMetodo");
 
                 toolbar_metodos.attachEvent("onClick", function (id) {
@@ -82,13 +104,13 @@
                                     jorgeB();
                                     break;
                                 case "simpson3_8":
-                                    simpson_3_8(); 
+                                    simpson_3_8();
                                     break;
                                 case "simpson1_3":
-                                    simpson_1_3(); 
+                                    simpson_1_3();
                                     break;
                                 case "simpsonAbierto":
-                                    simpsonAbierto();  
+                                    simpsonAbierto();
                                     break;
                             }
                             //simpson_3_8();
@@ -104,7 +126,7 @@
 
                 campo4 = layout3.cells('b');
 
-                campo1.setText('Nombre del campo 1');
+                //campo1.setText('Nombre del campo 1');
                 campo2.hideHeader();
                 campo3.setText('SOLUCIÓN');
                 campo3.setHeight(180);
@@ -117,7 +139,6 @@
                     //disable all autocomplete info from browsers.
                     $(":input").attr("autocomplete", "off");
                 });
-
             });
         </script>
     </body>
