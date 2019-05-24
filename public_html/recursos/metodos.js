@@ -1,37 +1,37 @@
-var funcionActual ; 
+var funcionActual;
 
 /************* FUNCIONES EPECIALES  ****************/
 
 function agregarLog() {
-     funcionActual = form.getItemValue("funcion");
+    funcionActual = form.getItemValue("funcion");
     console.log(funcionActual);
-    form.setItemValue("funcion", funcionActual+"Math.log10("); 
-    
+    form.setItemValue("funcion", funcionActual + "Math.log10(");
+
     SQRT2
 }
 
 function agregarSQRT() {
     funcionActual = form.getItemValue("funcion");
     console.log(funcionActual);
-    form.setItemValue("funcion", funcionActual+"Math.sqrt("); 
+    form.setItemValue("funcion", funcionActual + "Math.sqrt(");
 }
 
 function agregarSin() {
     funcionActual = form.getItemValue("funcion");
     console.log(funcionActual);
-    form.setItemValue("funcion", funcionActual+"Math.sin("); 
+    form.setItemValue("funcion", funcionActual + "Math.sin(");
 }
 
 function agregarCos() {
     funcionActual = form.getItemValue("funcion");
     console.log(funcionActual);
-    form.setItemValue("funcion", funcionActual+"Math.cos("); 
+    form.setItemValue("funcion", funcionActual + "Math.cos(");
 }
 
 function agregarTan() {
     funcionActual = form.getItemValue("funcion");
     console.log(funcionActual);
-    form.setItemValue("funcion", funcionActual+"Math.tan("); 
+    form.setItemValue("funcion", funcionActual + "Math.tan(");
 }
 
 /************* FIN DE FUNCIONES ESPECIALES  ****************/
@@ -299,7 +299,12 @@ function simpsonAbierto() {
 
         //console.log(h); 
     } else {
-        alert("El intervalo debe ser un numero par");
+        //alert("El intervalo debe ser un numero par");
+        dhtmlx.alert({
+            title: "Error!",
+            type: "alert-error",
+            text: "El intervalo debe ser un numero par"
+        });
     }
 
 

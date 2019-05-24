@@ -30,8 +30,8 @@
             var dataview = null;
             var myLineChart = null;
             var selectMetodo = "trapezoidal";
-            var  form ;
-            
+            var form;
+
             dhtmlxEvent(window, "load", function () {
 
 
@@ -45,12 +45,12 @@
                 var str = [
                     {type: "settings", labelWidth: 80, inputWidth: 250, position: "absolute"},
                     {type: "input", name: "a", label: "A", required: true, labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 25, labelTop: 5, inputLeft: 25, inputTop: 21},
-                    {type: "input", name: "b", label: "B",  required: true, labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 125, labelTop: 5, inputLeft: 125, inputTop: 21},
-                    {type: "input", name: "funcion", id:"f", label: "F(x)",value:"",  required: true,labelWidth: 275, labelAlign: "left", inputWidth: 275, labelLeft: 25, labelTop: 50, inputLeft: 25, inputTop: 71},
+                    {type: "input", name: "b", label: "B", required: true, labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 125, labelTop: 5, inputLeft: 125, inputTop: 21},
+                    {type: "input", name: "funcion", id: "f", label: "F(x)", value: "", required: true, labelWidth: 275, labelAlign: "left", inputWidth: 275, labelLeft: 25, labelTop: 50, inputLeft: 25, inputTop: 71},
                     {type: "input", name: "intervalos", label: "Intervalos", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 225, labelTop: 5, inputLeft: 225, inputTop: 21},
                     {type: "template", required: true, name: "operadoresEspeciales", inputWidth: 250, labelLeft: 25, inputLeft: 25, inputTop: 100,
                         value: {title: "Operaciones Especiales"}, format: renderOperadoresEpeciales},
-                    {type: "button", name: "btnSolucionar", label: "Solucionar", value: "Solucionar", width: "100", inputWidth: 100,inputHeight:55, inputLeft: 200, inputTop: 115}
+                    {type: "button", name: "btnSolucionar", label: "Solucionar", value: "Solucionar", width: "100", inputWidth: 100, inputHeight: 55, inputLeft: 200, inputTop: 115}
                 ];
                 //document.getElementById("logBox").innerHTML="Selected row: "+id
                 function renderOperadoresEpeciales(name, data) {
@@ -64,8 +64,8 @@
                                 <input type='button' value='Tan' onclick='agregarTan()'>\n\
                               <br>\n\
                             </div>";
-                }              
-                               
+                }
+
                 campo1.hideHeader();
                 campo1.setWidth(450);
                 campo1.setHeight(300);
@@ -83,37 +83,45 @@
 
                 toolbar_metodos.attachEvent("onClick", function (id) {
                     selectMetodo = id;
-                    if(selectMetodo!=="trapezoidal"){
-                      
-                    }else{
-                        
+                    if (selectMetodo !== "trapezoidal") {
+
+                    } else {
+
                     }
                 });
 
                 form = campo1.attachForm(str);
 
                 form.attachEvent("onButtonClick", function (name) {
-                    switch (name) {
-                        case "btnSolucionar":
-                            switch (selectMetodo) {
-                                case "trapezoidal":
-                                    trapezoidal();
-                                    break;
-                                case "jorgeBoole":
-                                    jorgeB();
-                                    break;
-                                case "simpson3_8":
-                                    simpson_3_8();
-                                    break;
-                                case "simpson1_3":
-                                    simpson_1_3();
-                                    break;
-                                case "simpsonAbierto":
-                                    simpsonAbierto();
-                                    break;
-                            }
-                            //simpson_3_8();
-                            break;
+                    if (form.validate()) {
+                        switch (name) {
+                            case "btnSolucionar":
+                                switch (selectMetodo) {
+                                    case "trapezoidal":
+                                        trapezoidal();
+                                        break;
+                                    case "jorgeBoole":
+                                        jorgeB();
+                                        break;
+                                    case "simpson3_8":
+                                        simpson_3_8();
+                                        break;
+                                    case "simpson1_3":
+                                        simpson_1_3();
+                                        break;
+                                    case "simpsonAbierto":
+                                        simpsonAbierto();
+                                        break;
+                                }
+                                //simpson_3_8();
+                                break;
+                        }
+                    } else {
+                        dhtmlx.alert({
+                            title: "Error!",
+                            type: "alert-error",
+                            text: "Completar los campos requeridos"
+                        });
                     }
                 });
                 campo2 = layout2.cells('b');
@@ -130,7 +138,8 @@
                 campo3.setText('SOLUCIÓN');
                 campo3.setHeight(180);
                 campo4.setText('GRAFICO');
-
+                
+                
                 var log = main_layout.attachStatusBar();
                 log.setText('TRABAJO METODOS NUMERICOS');
 
