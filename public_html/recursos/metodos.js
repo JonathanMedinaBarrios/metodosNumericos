@@ -1,3 +1,41 @@
+var funcionActual ; 
+
+/************* FUNCIONES EPECIALES  ****************/
+
+function agregarLog() {
+     funcionActual = form.getItemValue("funcion");
+    console.log(funcionActual);
+    form.setItemValue("funcion", funcionActual+"Math.log10("); 
+    
+    SQRT2
+}
+
+function agregarSQRT() {
+    funcionActual = form.getItemValue("funcion");
+    console.log(funcionActual);
+    form.setItemValue("funcion", funcionActual+"Math.sqrt("); 
+}
+
+function agregarSin() {
+    funcionActual = form.getItemValue("funcion");
+    console.log(funcionActual);
+    form.setItemValue("funcion", funcionActual+"Math.sin("); 
+}
+
+function agregarCos() {
+    funcionActual = form.getItemValue("funcion");
+    console.log(funcionActual);
+    form.setItemValue("funcion", funcionActual+"Math.cos("); 
+}
+
+function agregarTan() {
+    funcionActual = form.getItemValue("funcion");
+    console.log(funcionActual);
+    form.setItemValue("funcion", funcionActual+"Math.tan("); 
+}
+
+/************* FIN DE FUNCIONES ESPECIALES  ****************/
+
 
 function trapezoidal() {
 
@@ -127,9 +165,9 @@ function simpson_1_3() {
         } else {
             nuevaFuncion = obj.funcion;
         }
-        
+
         //Math.sqrt(x+10)
-        
+
         var data = [i, x, eval(nuevaFuncion)];
         tablaSimpson1_3.addRow(i, data);
         xs += h;
@@ -137,10 +175,10 @@ function simpson_1_3() {
             i = fin;
         }
     }
-    
+
     var suma = 0;
     var values = [];
-    
+
     for (var i = 0; i < fin + 1; i++) {
         //suma +=  parseInt(values[i]);
         tablaSimpson1_3.forEachCell(i, function (cellObj, ind) {
@@ -166,14 +204,14 @@ function simpson_1_3() {
             height: 180
         }
     });
-    
-    var resultado = ((suma*h)/3);
-    
-     dataview.add({
+
+    var resultado = ((suma * h) / 3);
+
+    dataview.add({
         limitea: inicio,
         limiteb: obj.b,
         h: h,
-        suma:suma,
+        suma: suma,
         resultado: resultado
     });
 
@@ -184,8 +222,8 @@ function simpson_1_3() {
 function simpsonAbierto() {
 
     var obj = form.getFormData();
-    
-    if(obj.intervalos%2==0){ // Si el intervalo es par, sino mnda mensaje
+
+    if (obj.intervalos % 2 == 0) { // Si el intervalo es par, sino mnda mensaje
         var h = (obj.b - obj.a) / obj.intervalos;
 
         var tablaSimpsonAbierto = campo2.attachGrid();
@@ -203,9 +241,9 @@ function simpsonAbierto() {
         for (var i = 0; i < fin + 1; i++) {
             var x = Math.round(xs * 100) / 100;
             if (i !== 0 && x !== fin) {
-                if (i%2 == 0) {
+                if (i % 2 == 0) {
                     nuevaFuncion = "2*" + "" + (obj.funcion);
-                }else{
+                } else {
                     nuevaFuncion = "4*" + "" + (obj.funcion);
                 }
             } else {
@@ -249,22 +287,22 @@ function simpsonAbierto() {
             }
         });
 
-        var resultado = ((suma*h)/3);
+        var resultado = ((suma * h) / 3);
 
-         dataview.add({
+        dataview.add({
             limitea: inicio,
             limiteb: obj.b,
             h: h,
-            suma:suma,
+            suma: suma,
             resultado: resultado
         });
 
         //console.log(h); 
-    }else{
+    } else {
         alert("El intervalo debe ser un numero par");
     }
-    
-    
+
+
 
 }
 
@@ -301,10 +339,10 @@ function simpson_3_8() {
             i = fin;
         }
     }
-    
+
     var suma = 0;
     var values = [];
-    
+
     for (var i = 0; i < fin + 1; i++) {
         //suma +=  parseInt(values[i]);
         tablaSimpson3_8.forEachCell(i, function (cellObj, ind) {
@@ -330,14 +368,14 @@ function simpson_3_8() {
             height: 180
         }
     });
-    
-    var resultado = ((3*h)/8)*(suma);
-    
-     dataview.add({
+
+    var resultado = ((3 * h) / 8) * (suma);
+
+    dataview.add({
         limitea: inicio,
         limiteb: obj.b,
         h: h,
-        suma:suma,
+        suma: suma,
         resultado: resultado
     });
 
@@ -370,13 +408,13 @@ function jorgeB() {
         } else {
             if (i == 1 || i == 3) {
                 nuevaFuncion = "32*" + "" + (obj.funcion);
-            }else {
+            } else {
                 nuevaFuncion = "12*" + "" + (obj.funcion);
             }
         }
-        
+
         //Math.sqrt(3*x+1)
-        
+
         var data = [i, x, eval(nuevaFuncion)];
         tablaJorgeB.addRow(i, data);
         xs += h;
@@ -384,10 +422,10 @@ function jorgeB() {
             i = fin;
         }
     }
-    
+
     var suma = 0;
     var values = [];
-    
+
     for (var i = 0; i < fin + 1; i++) {
         //suma +=  parseInt(values[i]);
         tablaJorgeB.forEachCell(i, function (cellObj, ind) {
@@ -400,9 +438,9 @@ function jorgeB() {
             i = fin;
         }
     }
-    
+
     //Math.sqrt(3X+1)
-    
+
     dataview = campo3.attachDataView({
         type: {
             //template: loadTemplate('recursos/tamplate/trapezoidal.html'),
@@ -415,14 +453,14 @@ function jorgeB() {
             height: 180
         }
     });
-    
-    var resultado = ((2*h*suma)/45);
-    
-     dataview.add({
+
+    var resultado = ((2 * h * suma) / 45);
+
+    dataview.add({
         limitea: inicio,
         limiteb: obj.b,
         h: h,
-        suma:suma,
+        suma: suma,
         resultado: resultado
     });
 
