@@ -243,7 +243,7 @@ function simpson_1_3() {
         }
     });
 
-    for (var i = 0; i < fin + 1; i++) {
+    for (var i = 0; i < 2 + 1; i++) {
         //suma +=  parseInt(values[i]);
         tablaSimpson1_3.forEachCell(i, function (cellObj, ind) {
             var cn = tablaSimpson1_3.getColumnId(ind);// Nombre de la columna
@@ -378,9 +378,13 @@ function simpsonAbierto() {
             }
         }
     });
-
-    for (var i = 0; i < fin + 1; i++) {
+    
+    console.log("-->> OJO <<--");  
+    var numCiclos =  obj.intervalos;
+    
+    for (var i = 0; i < numCiclos+1 ; i++) {
         //suma +=  parseInt(values[i]);
+        console.log(i+" - "+obj.intervalos);
         tablaSimpsonAbierto.forEachCell(i, function (cellObj, ind) {
             var cn = tablaSimpsonAbierto.getColumnId(ind);// Nombre de la columna
             values[cn] = cellObj.getValue();
@@ -396,12 +400,16 @@ function simpsonAbierto() {
             valorInicio = parseFloat(values.y);
         } else {
             valorFin = parseFloat(values.y);
+            
         }
-
+        if(i==numCiclos){
+            break;
+            
+        }
     }
     
     // --> FIN DE GRAFICA <--//
-
+    
         dataview = campo3.attachDataView({
             type: {
                 //template: loadTemplate('recursos/tamplate/trapezoidal.html'),
@@ -520,7 +528,7 @@ function simpson_3_8() {
         }
     });
 
-    for (var i = 0; i < fin + 1; i++) {
+    for (var i = 0; i < 3 + 1; i++) {
         //suma +=  parseInt(values[i]);
         tablaSimpson3_8.forEachCell(i, function (cellObj, ind) {
             var cn = tablaSimpson3_8.getColumnId(ind);// Nombre de la columna
@@ -659,7 +667,7 @@ function jorgeB() {
         }
     });
 
-    for (var i = 0; i < fin + 1; i++) {
+    for (var i = 0; i < 5 + 1; i++) {
         //suma +=  parseInt(values[i]);
         tablaJorgeB.forEachCell(i, function (cellObj, ind) {
             var cn = tablaJorgeB.getColumnId(ind);// Nombre de la columna
