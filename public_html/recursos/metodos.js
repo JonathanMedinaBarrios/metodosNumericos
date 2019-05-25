@@ -76,7 +76,9 @@ function trapezoidal() {
         tablaTrapezoidalGrid.addRow(i, data);
         xs += h;
     }
-    //var values =tablaTrapezoidalGrid.collectValues(2);    
+    //var values =tablaTrapezoidalGrid.collectValues(2);
+    
+    // --> INICIO DE GRAFICA <--//
     var suma = 0;
     var valorInicio;
     var valorFin;
@@ -127,7 +129,9 @@ function trapezoidal() {
         }
 
     }
-
+    
+    // --> FIN DE GRAFICA <--//
+    
     dataview = campo3.attachDataView({
         type: {
             //template: loadTemplate('recursos/tamplate/trapezoidal.html'),
@@ -207,6 +211,60 @@ function simpson_1_3() {
             i = fin;
         }
     }
+    
+    // --> INICIO DE GRAFICA <--//
+    var suma = 0;
+    var valorInicio;
+    var valorFin;
+    var values = [];
+
+    myLineChart = campo4.attachChart({
+        view: "spline",
+        value: "#y#",
+        item: {
+            borderColor: "#fbfbfb;",
+            color: "#000000"
+        },
+        line: {
+            color: "#ff9900",
+            width: 2
+        },
+        xAxis: {
+            template: "'#x#"
+        },
+        offset: 0,
+        yAxis: {
+            start: 0,
+            end: valorFin,
+            step: 10,
+            template: function (value) {
+                return value % 1 ? "" : value
+            }
+        }
+    });
+
+    for (var i = 0; i < fin + 1; i++) {
+        //suma +=  parseInt(values[i]);
+        tablaSimpson1_3.forEachCell(i, function (cellObj, ind) {
+            var cn = tablaSimpson1_3.getColumnId(ind);// Nombre de la columna
+            values[cn] = cellObj.getValue();
+        });
+        myLineChart.add({
+            x: values.x,
+            y: values.y
+        });
+        //console.log(values);
+        if (values.x > inicio && values.i < fin) {
+            suma += parseFloat(values.y);
+        } else if (values.x == inicio) {
+            valorInicio = parseFloat(values.y);
+        } else {
+            valorFin = parseFloat(values.y);
+        }
+
+    }
+    
+    // --> FIN DE GRAFICA <--//
 
     dataview = campo3.attachDataView({
         type: {
@@ -289,6 +347,60 @@ function simpsonAbierto() {
                 i = fin;
             }
         }
+        
+        // --> INICIO DE GRAFICA <--//
+    var suma = 0;
+    var valorInicio;
+    var valorFin;
+    var values = [];
+
+    myLineChart = campo4.attachChart({
+        view: "spline",
+        value: "#y#",
+        item: {
+            borderColor: "#fbfbfb;",
+            color: "#000000"
+        },
+        line: {
+            color: "#ff9900",
+            width: 2
+        },
+        xAxis: {
+            template: "'#x#"
+        },
+        offset: 0,
+        yAxis: {
+            start: 0,
+            end: valorFin,
+            step: 10,
+            template: function (value) {
+                return value % 1 ? "" : value
+            }
+        }
+    });
+
+    for (var i = 0; i < fin + 1; i++) {
+        //suma +=  parseInt(values[i]);
+        tablaSimpsonAbierto.forEachCell(i, function (cellObj, ind) {
+            var cn = tablaSimpsonAbierto.getColumnId(ind);// Nombre de la columna
+            values[cn] = cellObj.getValue();
+        });
+        myLineChart.add({
+            x: values.x,
+            y: values.y
+        });
+        //console.log(values);
+        if (values.x > inicio && values.i < fin) {
+            suma += parseFloat(values.y);
+        } else if (values.x == inicio) {
+            valorInicio = parseFloat(values.y);
+        } else {
+            valorFin = parseFloat(values.y);
+        }
+
+    }
+    
+    // --> FIN DE GRAFICA <--//
 
         dataview = campo3.attachDataView({
             type: {
@@ -376,6 +488,60 @@ function simpson_3_8() {
             i = fin;
         }
     }
+    
+    // --> INICIO DE GRAFICA <--//
+    var suma = 0;
+    var valorInicio;
+    var valorFin;
+    var values = [];
+
+    myLineChart = campo4.attachChart({
+        view: "spline",
+        value: "#y#",
+        item: {
+            borderColor: "#fbfbfb;",
+            color: "#000000"
+        },
+        line: {
+            color: "#ff9900",
+            width: 2
+        },
+        xAxis: {
+            template: "'#x#"
+        },
+        offset: 0,
+        yAxis: {
+            start: 0,
+            end: valorFin,
+            step: 10,
+            template: function (value) {
+                return value % 1 ? "" : value
+            }
+        }
+    });
+
+    for (var i = 0; i < fin + 1; i++) {
+        //suma +=  parseInt(values[i]);
+        tablaSimpson3_8.forEachCell(i, function (cellObj, ind) {
+            var cn = tablaSimpson3_8.getColumnId(ind);// Nombre de la columna
+            values[cn] = cellObj.getValue();
+        });
+        myLineChart.add({
+            x: values.x,
+            y: values.y
+        });
+        //console.log(values);
+        if (values.x > inicio && values.i < fin) {
+            suma += parseFloat(values.y);
+        } else if (values.x == inicio) {
+            valorInicio = parseFloat(values.y);
+        } else {
+            valorFin = parseFloat(values.y);
+        }
+
+    }
+    
+    // --> FIN DE GRAFICA <--//
 
     dataview = campo3.attachDataView({
         type: {
@@ -461,6 +627,60 @@ function jorgeB() {
     }
 
     //Math.sqrt(3X+1)
+    
+    // --> INICIO DE GRAFICA <--//
+    var suma = 0;
+    var valorInicio;
+    var valorFin;
+    var values = [];
+
+    myLineChart = campo4.attachChart({
+        view: "spline",
+        value: "#y#",
+        item: {
+            borderColor: "#fbfbfb;",
+            color: "#000000"
+        },
+        line: {
+            color: "#ff9900",
+            width: 2
+        },
+        xAxis: {
+            template: "'#x#"
+        },
+        offset: 0,
+        yAxis: {
+            start: 0,
+            end: valorFin,
+            step: 10,
+            template: function (value) {
+                return value % 1 ? "" : value
+            }
+        }
+    });
+
+    for (var i = 0; i < fin + 1; i++) {
+        //suma +=  parseInt(values[i]);
+        tablaJorgeB.forEachCell(i, function (cellObj, ind) {
+            var cn = tablaJorgeB.getColumnId(ind);// Nombre de la columna
+            values[cn] = cellObj.getValue();
+        });
+        myLineChart.add({
+            x: values.x,
+            y: values.y
+        });
+        //console.log(values);
+        if (values.x > inicio && values.i < fin) {
+            suma += parseFloat(values.y);
+        } else if (values.x == inicio) {
+            valorInicio = parseFloat(values.y);
+        } else {
+            valorFin = parseFloat(values.y);
+        }
+
+    }
+    
+    // --> FIN DE GRAFICA <--//
 
     dataview = campo3.attachDataView({
         type: {
