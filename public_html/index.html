@@ -56,12 +56,16 @@
                 function renderOperadoresEpeciales(name, data) {
                     return "<div>\n\
                               <br>\n\
-                                <input type='button' value='Log' onclick='agregarLog()'>\n\
-                                <input type='button' value='²√' onclick='agregarSQRT()'>\n\
+                                <input type='button' value='²√' onclick='agregarSQRT()' Style='width:50px;'>\n\
+                                <input type='button' value=' ( ' onclick='agregarParenApertura()' Style='width:50px;'>\n\
+                                <input type='button' value=' ) ' onclick='agregarParenCierre()' Style='width:50px;'>\n\
                               <br>\n\
-                                <input type='button' value='Sin' onclick='agregarSin()'>\n\
-                                <input type='button' value='Cos' onclick='agregarCos()'>\n\
-                                <input type='button' value='Tan' onclick='agregarTan()'>\n\
+                                <input type='button' value='Log' onclick='agregarLog()' Style='width:50px;'>\n\
+                                <input type='button' value=' ^ ' onclick='agregarExpo()' Style='width:50px;'>\n\
+                              <br>\n\
+                                <input type='button' value='Sin' onclick='agregarSin()' Style='width:50px;'>\n\
+                                <input type='button' value='Cos' onclick='agregarCos()' Style='width:50px;'>\n\
+                                <input type='button' value='Tan' onclick='agregarTan()' Style='width:50px;'>\n\
                               <br>\n\
                             </div>";
                 }

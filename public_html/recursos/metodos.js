@@ -33,12 +33,28 @@ function agregarTan() {
     console.log(funcionActual);
     form.setItemValue("funcion", funcionActual + "Math.tan(");
 }
+function agregarExpo() {
+    funcionActual = form.getItemValue("funcion");
+    console.log(funcionActual);
+    form.setItemValue("funcion", funcionActual + "^");
+}
+
+function agregarParenApertura() {
+    funcionActual = form.getItemValue("funcion");
+    console.log(funcionActual);
+    form.setItemValue("funcion", funcionActual + "(");
+}
+
+function agregarParenCierre() {
+    funcionActual = form.getItemValue("funcion");
+    console.log(funcionActual);
+    form.setItemValue("funcion", funcionActual + ")");
+}
 
 /************* FIN DE FUNCIONES ESPECIALES  ****************/
 
 
 function trapezoidal() {
-
     var obj = form.getFormData();
 
     var h = (obj.b - obj.a) / obj.intervalos;
