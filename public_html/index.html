@@ -47,7 +47,7 @@
                     {type: "input", name: "a", label: "A", required: true, labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 25, labelTop: 5, inputLeft: 25, inputTop: 21},
                     {type: "input", name: "b", label: "B", required: true, labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 125, labelTop: 5, inputLeft: 125, inputTop: 21},
                     {type: "input", name: "funcion", id: "f", label: "F(x)", value: "", required: true, labelWidth: 275, labelAlign: "left", inputWidth: 275, labelLeft: 25, labelTop: 50, inputLeft: 25, inputTop: 71},
-                    {type: "input", name: "intervalos", label: "Intervalos", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 225, labelTop: 5, inputLeft: 225, inputTop: 21},
+                    {type: "input", name: "intervalos", value: "", label: "Intervalos", labelWidth: 75, labelAlign: "left", inputWidth: 75, labelLeft: 225, labelTop: 5, inputLeft: 225, inputTop: 21},
                     {type: "template", required: true, name: "operadoresEspeciales", inputWidth: 250, labelLeft: 25, inputLeft: 25, inputTop: 100,
                         value: {title: "Operaciones Especiales"}, format: renderOperadoresEpeciales},
                     {type: "button", name: "btnSolucionar", label: "Solucionar", value: "Solucionar", width: "100", inputWidth: 100, inputHeight: 55, inputLeft: 200, inputTop: 115}
@@ -87,11 +87,6 @@
 
                 toolbar_metodos.attachEvent("onClick", function (id) {
                     selectMetodo = id;
-                    if (selectMetodo !== "trapezoidal") {
-
-                    } else {
-
-                    }
                 });
 
                 form = campo1.attachForm(str);
@@ -102,7 +97,15 @@
                             case "btnSolucionar":
                                 switch (selectMetodo) {
                                     case "trapezoidal":
-                                        trapezoidal();
+                                        if (form.getItemValue("intervalos") !== "") {
+                                            trapezoidal();
+                                        } else {
+                                            dhtmlx.alert({
+                                                title: "Error!",
+                                                type: "alert-error",
+                                                text: "El intervalo no debe estar vacio"
+                                            });
+                                        }
                                         break;
                                     case "jorgeBoole":
                                         jorgeB();
@@ -114,7 +117,15 @@
                                         simpson_1_3();
                                         break;
                                     case "simpsonAbierto":
-                                        simpsonAbierto();
+                                        if (form.getItemValue("intervalos") !== "") {
+                                           simpsonAbierto();
+                                        } else {
+                                            dhtmlx.alert({
+                                                title: "Error!",
+                                                type: "alert-error",
+                                                text: "El intervalo no debe estar vacio"
+                                            });
+                                        }
                                         break;
                                 }
                                 //simpson_3_8();
@@ -140,10 +151,10 @@
                 //campo1.setText('Nombre del campo 1');
                 campo2.hideHeader();
                 campo3.setText('SOLUCIÓN');
-                campo3.setHeight(180);
+                campo3.setHeight(200);
                 campo4.setText('GRAFICO');
-                
-                
+
+
                 var log = main_layout.attachStatusBar();
                 log.setText('TRABAJO METODOS NUMERICOS');
 

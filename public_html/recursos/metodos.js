@@ -6,8 +6,6 @@ function agregarLog() {
     funcionActual = form.getItemValue("funcion");
     console.log(funcionActual);
     form.setItemValue("funcion", funcionActual + "Math.log10(");
-
-    SQRT2
 }
 
 function agregarSQRT() {
@@ -36,7 +34,7 @@ function agregarTan() {
 function agregarExpo() {
     funcionActual = form.getItemValue("funcion");
     console.log(funcionActual);
-    form.setItemValue("funcion", funcionActual + "^");
+    form.setItemValue("funcion", funcionActual + "**");
 }
 
 function agregarParenApertura() {
@@ -194,6 +192,8 @@ function simpson_1_3() {
         if (x === fin) {
             i = fin;
         }
+        
+        
     }
 
     var suma = 0;
@@ -213,7 +213,7 @@ function simpson_1_3() {
     }
     
     // --> INICIO DE GRAFICA <--//
-    var suma = 0;
+    var suma1 = 0;
     var valorInicio;
     var valorFin;
     var values = [];
@@ -255,7 +255,7 @@ function simpson_1_3() {
         });
         //console.log(values);
         if (values.x > inicio && values.i < fin) {
-            suma += parseFloat(values.y);
+            suma1 += parseFloat(values.y);
         } else if (values.x == inicio) {
             valorInicio = parseFloat(values.y);
         } else {
@@ -311,10 +311,10 @@ function simpsonAbierto() {
         var fin = parseInt(obj.b, 10);
         var xs = inicio;
         var nuevaFuncion = null;
-
-        for (var i = 0; i < fin + 1; i++) {
+        //(Math.log10(x+3))/Math.log10(10)
+        for (var i = 0; i < obj.intervalos + 1; i++) {
             var x = Math.round(xs * 100) / 100;
-            if (i !== 0 && x !== fin) {
+            if (i !== 0 && x !== obj.intervalos) {
                 if (i % 2 == 0) {
                     nuevaFuncion = "2*" + "" + (obj.funcion);
                 } else {
@@ -323,13 +323,19 @@ function simpsonAbierto() {
             } else {
                 nuevaFuncion = obj.funcion;
             }
-
+            console.log(x);
+            console.log(nuevaFuncion); 
             var data = [i, x, eval(nuevaFuncion)];
             tablaSimpsonAbierto.addRow(i, data);
             xs += h;
-            if (x === fin) {
-                i = fin;
+            if (x === obj.intervalos) {
+                i = obj.intervalos;
             }
+            
+            if(i==obj.intervalos){
+                break;
+            }
+            
         }
 
         var suma = 0;
@@ -341,7 +347,7 @@ function simpsonAbierto() {
                 var cn = tablaSimpsonAbierto.getColumnId(ind);// Nombre de la columna
                 values[cn] = cellObj.getValue();
             });
-            console.log(values);
+            //console.log(values);
             suma += parseFloat(values.y);
             if (parseInt(values.x) === fin) {
                 i = fin;
@@ -349,7 +355,7 @@ function simpsonAbierto() {
         }
         
         // --> INICIO DE GRAFICA <--//
-    var suma = 0;
+    var suma1 = 0;
     var valorInicio;
     var valorFin;
     var values = [];
@@ -379,12 +385,12 @@ function simpsonAbierto() {
         }
     });
     
-    console.log("-->> OJO <<--");  
+    //console.log("-->> OJO <<--");  
     var numCiclos =  obj.intervalos;
     
     for (var i = 0; i < numCiclos+1 ; i++) {
         //suma +=  parseInt(values[i]);
-        console.log(i+" - "+obj.intervalos);
+        //console.log(i+" - "+obj.intervalos);
         tablaSimpsonAbierto.forEachCell(i, function (cellObj, ind) {
             var cn = tablaSimpsonAbierto.getColumnId(ind);// Nombre de la columna
             values[cn] = cellObj.getValue();
@@ -395,7 +401,7 @@ function simpsonAbierto() {
         });
         //console.log(values);
         if (values.x > inicio && values.i < fin) {
-            suma += parseFloat(values.y);
+            suma1 += parseFloat(values.y);
         } else if (values.x == inicio) {
             valorInicio = parseFloat(values.y);
         } else {
@@ -498,7 +504,7 @@ function simpson_3_8() {
     }
     
     // --> INICIO DE GRAFICA <--//
-    var suma = 0;
+    var suma1 = 0;
     var valorInicio;
     var valorFin;
     var values = [];
@@ -540,7 +546,7 @@ function simpson_3_8() {
         });
         //console.log(values);
         if (values.x > inicio && values.i < fin) {
-            suma += parseFloat(values.y);
+            suma1 += parseFloat(values.y);
         } else if (values.x == inicio) {
             valorInicio = parseFloat(values.y);
         } else {
@@ -637,7 +643,7 @@ function jorgeB() {
     //Math.sqrt(3X+1)
     
     // --> INICIO DE GRAFICA <--//
-    var suma = 0;
+    var suma1 = 0;
     var valorInicio;
     var valorFin;
     var values = [];
@@ -679,7 +685,7 @@ function jorgeB() {
         });
         //console.log(values);
         if (values.x > inicio && values.i < fin) {
-            suma += parseFloat(values.y);
+            suma1 += parseFloat(values.y);
         } else if (values.x == inicio) {
             valorInicio = parseFloat(values.y);
         } else {
