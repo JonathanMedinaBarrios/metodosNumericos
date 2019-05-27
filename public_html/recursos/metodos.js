@@ -314,6 +314,7 @@ function simpsonAbierto() {
         //(Math.log10(x+3))/Math.log10(10)
         for (var i = 0; i < obj.intervalos + 1; i++) {
             var x = Math.round(xs * 100) / 100;
+            
             if (i !== 0 && x !== obj.intervalos) {
                 if (i % 2 == 0) {
                     nuevaFuncion = "2*" + "" + (obj.funcion);
@@ -323,9 +324,15 @@ function simpsonAbierto() {
             } else {
                 nuevaFuncion = obj.funcion;
             }
-            console.log(x);
-            console.log(nuevaFuncion); 
-            var data = [i, x, eval(nuevaFuncion)];
+            
+            var valor;
+             if(isNaN(eval(nuevaFuncion))){
+                 valor=0;
+             }else{
+                 valor=eval(nuevaFuncion)
+             }
+            
+            var data = [i, x, valor];
             tablaSimpsonAbierto.addRow(i, data);
             xs += h;
             if (x === obj.intervalos) {
@@ -479,7 +486,14 @@ function simpson_3_8() {
             nuevaFuncion = obj.funcion;
         }
 
-        var data = [i, x, eval(nuevaFuncion)];
+        var valor;
+        if(isNaN(eval(nuevaFuncion))){
+            valor=0;
+        }else{
+            valor=eval(nuevaFuncion)
+        }
+
+       var data = [i, x, valor];
         tablaSimpson3_8.addRow(i, data);
         xs += h;
         if (x === fin) {
@@ -616,7 +630,14 @@ function jorgeB() {
 
         //Math.sqrt(3*x+1)
 
-        var data = [i, x, eval(nuevaFuncion)];
+        var valor;
+        if(isNaN(eval(nuevaFuncion))){
+            valor=0;
+        }else{
+            valor=eval(nuevaFuncion)
+        }
+
+       var data = [i, x, valor];
         tablaJorgeB.addRow(i, data);
         xs += h;
         if (x == fin) {
