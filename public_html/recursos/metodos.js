@@ -14,6 +14,12 @@ function agregarSQRT() {
     form.setItemValue("funcion", funcionActual + "Math.sqrt(");
 }
 
+function agregarCBRT() {
+    funcionActual = form.getItemValue("funcion");
+    console.log(funcionActual);
+    form.setItemValue("funcion", funcionActual + "Math.cbrt(");
+}
+
 function agregarSin() {
     funcionActual = form.getItemValue("funcion");
     console.log(funcionActual);
@@ -315,7 +321,7 @@ function simpsonAbierto() {
         for (var i = 0; i < obj.intervalos + 1; i++) {
             var x = Math.round(xs * 100) / 100;
             
-            if (i !== 0 && x !== obj.intervalos) {
+            if (i !== 0 && i !== obj.intervalos) {
                 if (i % 2 == 0) {
                     nuevaFuncion = "2*" + "" + (obj.funcion);
                 } else {
@@ -324,6 +330,19 @@ function simpsonAbierto() {
             } else {
                 nuevaFuncion = obj.funcion;
             }
+            
+            if (i == obj.intervalos) {
+                
+                nuevaFuncion = obj.funcion;
+                
+                console.log(obj.intervalos+" = "+i);
+                console.log(nuevaFuncion);
+            
+                
+            }
+            
+            
+            
             
             var valor;
              if(isNaN(eval(nuevaFuncion))){
@@ -436,7 +455,7 @@ function simpsonAbierto() {
             }
         });
 
-        var resultado = ((suma * h) / 3);
+        var resultado = ((suma*h) / 3);
 
         dataview.add({
             limitea: inicio,
@@ -743,3 +762,10 @@ function jorgeB() {
     //console.log(h); 
 
 }
+/*
+Math.cbrt = function(x) {
+    var sign = x === 0 ? 0 : x > 0 ? 1 : -1;
+
+    return sign * Math.pow(Math.abs(x), 1 / 3);
+}
+*/
