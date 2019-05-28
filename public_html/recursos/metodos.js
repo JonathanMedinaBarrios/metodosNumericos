@@ -335,8 +335,8 @@ function simpsonAbierto() {
                 
                 nuevaFuncion = obj.funcion;
                 
-                console.log(obj.intervalos+" = "+i);
-                console.log(nuevaFuncion);
+               // console.log(obj.intervalos+" = "+i);
+               // console.log(nuevaFuncion);
             
                 
             }
@@ -414,9 +414,11 @@ function simpsonAbierto() {
     //console.log("-->> OJO <<--");  
     var numCiclos =  obj.intervalos;
     
-    for (var i = 0; i < numCiclos+1 ; i++) {
+    for (var i = 0; i < eval(numCiclos+1) ; i++) {
         //suma +=  parseInt(values[i]);
-        //console.log(i+" - "+obj.intervalos);
+        console.log("Vlr I:"+i+" - Num Int:"+obj.intervalos+" - Y:");
+        console.log(values.x+" > "+inicio+" && "+values.i+" < "+numCiclos+1);
+        
         tablaSimpsonAbierto.forEachCell(i, function (cellObj, ind) {
             var cn = tablaSimpsonAbierto.getColumnId(ind);// Nombre de la columna
             values[cn] = cellObj.getValue();
@@ -426,10 +428,12 @@ function simpsonAbierto() {
             y: values.y
         });
         //console.log(values);
-        if (values.x > inicio && values.i < fin) {
+        if (values.x > inicio && values.i < eval(numCiclos+1)) {
             suma1 += parseFloat(values.y);
+            console.log(parseFloat(values.y));
         } else if (values.x == inicio) {
             valorInicio = parseFloat(values.y);
+            suma1 += parseFloat(values.y);
         } else {
             valorFin = parseFloat(values.y);
             
@@ -455,13 +459,13 @@ function simpsonAbierto() {
             }
         });
 
-        var resultado = ((suma*h) / 3);
+        var resultado = ((suma1*h) / 3);
 
         dataview.add({
             limitea: inicio,
             limiteb: obj.b,
             h: h,
-            suma: suma,
+            suma: suma1,
             resultado: resultado
         });
 
